@@ -1,0 +1,34 @@
+<div class = "container">
+	<div class="row">
+
+		<h1 class="about-text-top">7つの習慣とは</h1>
+
+		<div class="top-about-explanation  col-xs-12">
+			<h4>タイトルはみなさんもご存知の通りの名作<br/>
+			(スティーブン・R・コヴィー 著『完訳 7つの習慣 人格主義の回復』キングベアー出版２０１３年)から題名は引用して来ました（笑)<br/>
+			アプリの概要として<br/>
+			<ul>
+				<li>マイページの作成、編集</li>
+				<li>全ユーザーのデータ一覧</li>
+				<li>習慣リストの作成</li>
+				<li>達成ボタンを押すごとのに経験値に表示される</li>
+				<li>全ユーザーの経験値が一日、一週間、総合としてランキング形式で表示される</li>
+			</ul>
+			などちょっとしたゲーム感覚で習慣管理を楽しめたらなと思います。<br/>
+			一緒に習慣を競わないかい？</h4>
+		</div>
+
+
+		<div class="main-about-picture  col-xs-9">
+			<%= image_tag '/images/list.jpeg', :class =>"about-picture-top img-responsive img-rounded"%>
+		</div>
+	</div>
+	<div class = "row">
+		<div class="top-about-about-explanation  col-xs-3"></div>
+		<div class="top-about-about-explanation  col-xs-6">
+			<%= link_to '会員登録ページへ', new_user_registration_path, :type =>"button", :class => "btn btn-default center-block new-create-btn" %>
+		</div>
+		<div class="top-about-about-explanation  col-xs-3"></div>
+	</div>
+	
+</div>

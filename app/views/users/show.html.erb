@@ -1,0 +1,160 @@
+<div class = "show container">
+	<div class= "row">
+
+		<div class="col-lg-4" >
+			<div class ="Border-radius">
+				<div class ="profile-picture-box"><%= attachment_image_tag @user, :image, :fill, 200, 200, :class=> "profile", fallback: '/images/no-image.jpeg', :size => '200x200' %></div>
+				<table class ="table table-condensed table-hover">
+					<tr>
+						<th> <i class="fas fa-user"></i>		名前</th>
+					</tr>
+					<tr>
+						<td><%= @user.name %></td>
+					</tr>
+					<tr>
+						<th><i class="fas fa-male"></i><i class="fas fa-female"></i>	性別</th>
+					</tr>
+					<tr>
+						<td>
+							<% if @user.gender%>
+								<%= @user.gender %>
+							<% else %>
+								<p>未入力</p>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<th><i class="fas fa-user-tie"></i>	職業</th>
+					</tr>
+					<tr>
+						<td>
+							<% if @user.profession%>
+								<%= @user.profession%>
+							<% else %>
+								<p>未入力</p>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<th><i class="fas fa-street-view"></i>	趣味</th>
+					</tr>
+					<tr>
+						<td>
+							<% if @user.hobby.blank? %>
+								<p>未入力</p>
+							<% else %>
+
+								<%= @user.hobby%>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<th><i class="far fa-address-card"></i>	自己紹介</th>
+					</tr>
+					<tr>
+						<td>
+							<% if @user.introduction.blank?%>
+								<p>未入力</p>
+							<% else %>
+								<%= @user.introduction%>
+							<% end %>
+						</td>
+					</tr>
+					<% if current_user&.admin? or (@user == current_user) %>
+					<tr>
+						<td>
+							<strong>
+								<i class="fas fa-user-edit"></i>	<%= link_to 'ユーザー情報を編集する。', edit_user_path(@user), :class =>"text-color" %>
+							</strong>
+						</td>
+					</tr>
+					<% end %>
+					<% if current_user&.admin? or (@user == current_user) %>
+					<tr>
+						<th>
+							<strong>
+								<i class="fas fa-user-times"></i>
+								<%= link_to "ユーザーデータを削除する", users_path, method: :delete, "data-confirm" => "まじで削除するの？これで本当に納得する?", :class =>"text-color" %>
+							</strong>
+						</th>
+					</tr>
+					<% end %>
+				</table>
+			</div>
+		</div>
+
+		<div class="col-lg-8">
+
+			<% if @habit.errors.any? %>
+	        	<div id="error_explanation" class="alert alert-danger">
+	          		<h2><%= @habit.errors.count %>件のエラーがあります。</h2>
+	          			<ul>
+	            			<% @habit.errors.full_messages.each do |message| %>
+	              				<li><%= message %></li>
+	            			<% end %>
+	          			</ul>
+	        	</div>
+        	<% end %>
+
+			<h1 class="text-center">習慣リスト一覧</h1>
+
+			<h2 class="experience-center experience-text">経験値: <%= @experiences.count %>EXP</h2>
+
+			 <% if current_user&.admin? or (@user == current_user) %>
+			 <div class="pull-right">
+				<%= form_for(@habit) do |f| %>
+					<%= f.text_field :habit_name, :class =>"text_box", :placeholder=>"習慣名を記入してください" %>
+					<%= f.submit '習慣を追加', :class =>"btn btn-default" %>
+				<% end %>
+			</div>
+			<% end %>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @habits.each.with_index(1) do |habit ,idx| %>
+						<tr>
+							<th><%= idx %></th>
+							<td>
+								<strong><h4><%= habit.habit_name %></h4></strong>
+							</td>
+							<% if current_user&.admin? or (@user == current_user) %>
+							<td>
+								<div id="experiences_buttons_<%= @habit.id %>"><%= render partial: 'experiences/experience', locals: { habit: habit, experiences: @experiences} %>
+								</div>
+							</td>
+							<% end %>
+							<td></td>
+							<td>
+								<% if current_user&.admin? or (@user == current_user) %>
+								<button type="button" class="btn btn-danger">
+									<%= link_to "削除", habit_path(habit.id), method: :delete, "data-confirm" => "まじで削除するの？これで本当に納得する?", :class =>"btn-color" %>
+								</button>
+								<% end %>
+							</td>
+							<td>
+								<% if current_user&.admin? or (@user == current_user) %>
+									<button type="button" class="btn btn-info">
+										<%= link_to '編集', edit_habit_path(habit.id), :class=>"btn-color" %>
+									</button>
+								<% end %>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+
+

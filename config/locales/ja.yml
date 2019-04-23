@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      habit: 習慣
+    attributes:
+      user:
+        name: 名前
+        hobby: 趣味
+        introduction: 自己紹介
+      habit:
+        habit_name: 習慣名

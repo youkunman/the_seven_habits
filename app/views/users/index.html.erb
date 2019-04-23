@@ -1,0 +1,29 @@
+<div class ="user-index container">
+	<div class = "row">
+
+		<div class="top clearfix">
+			<h1>ユーザー一覧</h1>
+		</div>
+
+
+		<div class="main clearfix">
+			<% @users.each do |user| %>
+				<div class="user-list">
+					<div class = "user-profile">
+						<%= link_to user_path(user.id) do%>
+						<%= attachment_image_tag user, :image, :fill, 190, 190, :class=> "profile", fallback: '/images/no-image.jpeg', :size => '190x190' %>
+						<% end %>
+						<br/>
+				    	<span><%= link_to user.name, user_path(user.id), :class => "name-font" %></span>
+				    	<strong><p class = "experience-text"><%= user.experiences.count %>EXP</p></strong>
+				    </div>
+				</div>
+			<% end %>
+		</div>
+		<div class = "paginate"><%= paginate @users, class: "paginate" %></div>
+
+	</div>
+</div>
+
+
+

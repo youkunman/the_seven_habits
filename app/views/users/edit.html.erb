@@ -1,0 +1,66 @@
+<div class ="container">
+    <div class ="row">
+        <div class="inquiries col-xs-4 col-xs-offset-4">
+
+            <% if @user.errors.any? %>
+                <div id="error_explanation" class="alert alert-danger">
+                    <h2><%= @user.errors.count %>件のエラーがあります。</h2>
+                        <ul>
+                            <% @user.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                            <% end %>
+                        </ul>
+                </div>
+            <% end %>
+
+            <div class ="profile-picture-box"><%= attachment_image_tag @user, :image, :fill, 200, 200, :class=> "profile", fallback: '/images/no-image.jpeg', :size => '200x200' %>
+            </div>
+
+            <div class="inquiries col-xs-２ col-xs-offset-2">
+                <%= form_for (@user) do |f| %>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">プロフィール画像</label>
+                            <!-- <input type="file" class="form-control-file" id="exampleFormControlFile1"> -->
+                            <%= f.attachment_field :image, autofocus: true, autocomplete: "image", method: :create, :class =>"form-control-file"  %>
+                        </div>
+
+
+
+                    <label for="exampleFormControlFile1">性別</label>
+                    <div class="form-group">
+                        <%= f.select :gender, [["未入力","未入力"],["男性","男性"], ["女性","女性"],["非公開","非公開"]], :selected=>@user.gender, :class =>"form-control" %>
+                    </div>
+
+                    <label for="exampleFormControlFile1">職業</label>
+                    <div class="form-group">
+                        <%= f.select :profession, [["未入力","未入力"],["高校生","高校生"], ["大学生","大学生"],["社会人","社会人"],["パート,アルバイト","パート,アルバイト"],["無職","無職"],["非公開","非公開"]], :selected=>@user.profession, :class =>"form-control" %>
+                    </div>
+
+                    <label for="exampleFormControlFile1">趣味</label>
+
+                        <div class="form-row">
+                            <div class="col">
+                                <%= f.text_field :hobby, :class=>"form-control", :placeholder=>"趣味を入力してください"%>
+                            </div>
+                        </div>
+
+
+                    <label for="exampleFormControlFile1">自己紹介</label>
+                    <div class="form-group">
+                            <%= f.text_area :introduction, :class=>"form-control", :id=>"exampleFormControlTextarea1", :placeholder=>"紹介文を入力してください"%>
+                    </div>
+
+                    <%= f.submit '保存', :class => "btn btn-success" %>
+                    <%= link_to '戻る', user_path(current_user.id), :class => "btn btn-default " %><br/>
+                <% end %>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+

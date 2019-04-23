@@ -1,0 +1,29 @@
+<div class ="container">
+	<div class ="row">
+
+		<% if @habit.errors.any? %>
+			<div id="error_explanation" class="alert alert-danger">
+		    	<h2><%= @habit.errors.count %>件のエラーがあります。</h2>
+		        	<ul>
+		            	<% @habit.errors.full_messages.each do |message| %>
+		              		<li><%= message %></li>
+		            	<% end %>
+		          	</ul>
+		    </div>
+	    <% end %>
+
+		<h1>習慣リスト編集ページ</h1>
+	</div>
+</div>
+
+<div class ="container">
+	<div class ="row">
+		<div class ="edit-box">
+			<%= form_for(@habit) do |f| %>
+				 <%= f.text_field :habit_name, :class =>"edit-update-box" %>
+				 <%= f.submit '更新', :class => "btn btn-success" %>
+				 <%= link_to '戻る', user_path(current_user.id), :class => "btn btn-default" %>
+			<% end %>
+		</div>
+	</div>
+</div>

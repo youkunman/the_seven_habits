@@ -1,0 +1,153 @@
+<div class ="container">
+  <div class ="row">
+    <div class="col-sm-8 col-sm-offset-2">
+
+  <!DOCTYPE html>
+  <html lang="ja">
+  <head>
+    <meta charset="utf8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ランキング</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/style.css" media="all">
+  </head>
+  <body>
+
+      <h1>ランキング</h1>
+        <nav>
+          <ul id="tab-menu" class="">
+            <li><a href="#tab1" class="active">Day</a></li>
+            <li><a href="#tab2" class="">Week</a></li>
+            <li><a href="#tab3" class="">Total</a></li>
+          </ul>
+        </nav>
+
+          <div id="tab-contents" class="clearfix">
+
+            <div id="tab1" class="tab active">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @todays.first(10).each.with_index(1) do |user ,idx| %>
+                    <tr>
+                      <th></th>
+                      <th><h2><%= idx %></h2></th>
+                      <td>
+                        <%= link_to user_path(user.id) do%>
+                          <div class ="profile-picture-box"><%= attachment_image_tag user, :image, :fill, 100, 100, :class=> "profile", fallback: '/images/no-image.jpeg', :size => '100x100' %>
+                          </div>
+                        <% end %>
+                      </td>
+                      <td>
+                        <h2><%= link_to user.name, user_path(user.id), :class => "user-name-font" %></h2>
+                      </td>
+                      <td>
+                        <h1 class ="experience-text"><%= user.experiences.where(created_at: @today_range).count %>EXP</h1>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div> 
+
+
+            <div id="tab2" class="tab">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @weeks.first(10).each.with_index(1) do |user ,idx| %>
+                    <tr>
+                      <th></th>
+                      <th><h2><%= idx %></h2></th>
+                      <td>
+                        <%= link_to user_path(user.id) do%>
+                          <div class ="profile-picture-box"><%= attachment_image_tag user, :image, :fill, 100, 100, :class=> "profile", fallback: '/images/no-image.jpeg', :size => '100x100' %>
+                          </div>
+                        <% end %>
+                      </td>
+                      <td>
+                        <h2><%= link_to user.name, user_path(user.id), :class => "user-name-font" %></h2>
+                      </td>
+                      <td>
+                        <h1 class = "experience-text"><%= user.experiences.where(created_at: @week_range).count %>EXP</h1>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div> 
+
+            <div id="tab3" class="tab">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @users.first(10).each.with_index(1) do |user ,idx| %>
+                    <tr>
+                      <th></th>
+                      <th><h2><%= idx %></h2></th>
+                      <td>
+                        <%= link_to user_path(user.id) do%>
+                          <div class ="profile-picture-box"><%= attachment_image_tag user, :image, :fill, 100, 100, :class=> "profile", fallback: '/images/no-image.jpeg', :size => '100x100' %>
+                          </div>
+                        <% end %>
+                      </td>
+                      <td>
+                        <h2><%= link_to user.name, user_path(user.id), :class => "user-name-font" %></h2>
+                      </td>
+                      <td>
+                        <h1 class = "experience-text"><%= user.experiences.count %>EXP</h1>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+      </div>
+  </div>
+</div>
+    <!-- <script type="text/javascript" src="js/jquery.js"></script> -->
+
+
+<script>
+  $(function(){
+  $('#tab-contents .tab[id != "tab1"]').hide();
+  $('#tab-menu a').on('click', function() {
+    $("#tab-contents .tab").hide();
+    $("#tab-menu .active").removeClass("active");
+    $(this).addClass("active");
+    $($(this).attr("href")).show();
+    return false;
+  });
+});
+</script>
+
+
+
+
+

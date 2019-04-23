@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+
+	<% unless habit.experiences_user(current_user).blank? %>
+    	<%= link_to habit_experiences_path(habit_id: habit.id ,id: habit.experiences_user(current_user).id), method: :delete, remote: true do %>
+      	<div class="vertical_experoence">
+        	<button type="button" class="btn btn-success">やったね！</button>
+      	</div>
+    <% end %>
+
+  	<% else %>
+    	<%= link_to habit_experiences_path(habit.id), method: :post, remote: true do %>
+      		<div class="vertical_experoence">
+        		<button type="button" class="btn btn-success">よし、挑戦だ！</button>
+			</div>
+    <% end %>
+	<% end %>
+
+<% end %>

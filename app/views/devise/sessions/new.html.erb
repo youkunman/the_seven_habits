@@ -1,0 +1,33 @@
+<div class ="container">
+   <div class ="row">
+      <div class="col-sm-6 col-sm-offset-4">
+        <div id="login">
+
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+
+          <div id="login-column" class="col-md-6">
+            <div id="login-box" class="col-md-12">
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <h3 class="text-center text-info">Login</h3>
+                <div class="form-group">
+                  <%= f.label :名前を入力 %><br />
+                  <%= f.text_field :name, autofocus: true, autocomplete: "name", :class =>"form-control", :placeholder=>"名前を入力してください"  %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :パスワードを入力 %>
+                  <%= f.password_field :password, autocomplete: "new-password", :class =>"form-control", :placeholder=>"パスワードを入力してください" %>
+                </div>
+                <div class="actions">
+                  <%= f.submit 'ログインしてマイページへ', :class => "btn btn-info btn-md" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+

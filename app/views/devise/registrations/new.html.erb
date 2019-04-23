@@ -1,0 +1,43 @@
+<div class ="container">
+  <div class ="row">
+
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="inquiries col-xs-4 col-xs-offset-4">
+
+      <div class ="profile-picture-box"><%= attachment_image_tag @user, :image, :fill, 200, 200, fallback: 'no-image.jpeg', :size => '280x250' %></div>
+
+      <div class="inquiries col-xs-２ col-xs-offset-2">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= f.attachment_field :image, autofocus: true, autocomplete: "image", method: :create  %><br>
+
+          <div class="form-group">
+            <%= f.label :名前を入力 %><br />
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", :class =>"form-control", :placeholder=>"名前を入力してください"  %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :パスワードを入力 %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password", :class =>"form-control", :placeholder=>"パスワードを入力してください" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :パスワードを再度入力 %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", :class =>"form-control", :placeholder=>"再度パスワードを入力してください" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit '会員登録', :class => "btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>
