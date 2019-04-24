@@ -1,5 +1,5 @@
 current directory: /Users/satouyouhei/Desktop/work/vagrant/the_seven_habits/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/ext/mysql2
-/Users/satouyouhei/.rbenv/versions/2.5.3/bin/ruby -r ./siteconf20190424-53094-ribuol.rb extconf.rb
+/Users/satouyouhei/.rbenv/versions/2.5.3/bin/ruby -r ./siteconf20190424-56416-1xxvrw1.rb extconf.rb
 checking for rb_absint_size()... yes
 checking for rb_absint_singlebit_p()... yes
 checking for rb_wait_for_single_fd()... yes
@@ -41,4 +41,4 @@ linking shared-object mysql2/mysql2.bundle
 
 current directory: /Users/satouyouhei/Desktop/work/vagrant/the_seven_habits/vendor/bundle/ruby/2.5.0/gems/mysql2-0.5.2/ext/mysql2
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 mysql2.bundle ./.gem.20190424-53094-1kmcse0/mysql2
+/usr/bin/install -c -m 0755 mysql2.bundle ./.gem.20190424-56416-trulhc/mysql2

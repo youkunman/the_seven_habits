@@ -10,7 +10,7 @@
 	 		</div>
 	 		<div class="col-md-2 col-md-offset-5">
 		 		<%= link_to users_path  do %>
-		 			<%= image_tag 'public/images/habits.jpeg', :class => "img-thumbnail"%>
+		 			<%= image_tag '/images/habits.jpeg', :class => "img-thumbnail"%>
 		 		<% end %>
 	 		</div>
 	 		<div class="bottom-explanation  col-xs-12">
@@ -21,3 +21,7 @@
 </body>
 
 
+
+
+
+$ scp -i ~/.ssh/practice-aws.pem master.key ec2-user@13.231.194.98:/var/www/html/meshiterro-demo/config
