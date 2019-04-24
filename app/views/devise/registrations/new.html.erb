@@ -5,7 +5,7 @@
 
     <div class="inquiries col-xs-4 col-xs-offset-4">
 
-      <div class ="profile-picture-box"><%= attachment_image_tag @user, :image, :fill, 200, 200, fallback: 'no-image.jpeg', :size => '280x250' %></div>
+      <div class ="profile-picture-box"><%= attachment_image_tag @user, :image, :fill, 200, 200, fallback: '/images/no-image.jpeg', :size => '280x250' %></div>
 
       <div class="inquiries col-xs-２ col-xs-offset-2">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
